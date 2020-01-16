@@ -76,7 +76,7 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   min-height: 200px;
   padding: 20px 30px;
   background: #ffffff;
@@ -143,10 +143,9 @@
 }
 
 .main-date-title {
-  font-size: 25px;
+  font-size: 35px;
   display: flex;
   font-weight: 700;
-  justify-content: center;
   align-items: center;
   color: #9481f7;
 }
@@ -167,13 +166,20 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin: 50px;
+  color: #333333;
 }
 
 .welcome {
   margin-top: 20px;
   font-size: 40px;
+  font-weight: 600;
 }
 
 .today {
   font-size: 20px;
+}
+
+.inset-shadow {
+  box-shadow: inset -10px 0 5px -5px rgba(33, 33, 33, 0.075);
 }

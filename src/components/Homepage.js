@@ -109,12 +109,16 @@ const Homepage = ({ props }) => {
               <div key={d[0].dt} className="date-card">
                 <span className="main-date-title">
                   {new Date(d[0].dt * 1000).toLocaleDateString("en-US", {
-                    weekday: "short",
-                    month: "short",
+                    weekday: "long",
+                    month: "long",
                     day: "numeric"
                   })}
                 </span>
-                <div className="weather-row">
+                <div
+                  className={`weather-row ${
+                    d.length >= 4 ? "inset-shadow" : ""
+                  }`}
+                >
                   {d.map(date => {
                     return (
                       <div key={date.dt} className="weather-block">
