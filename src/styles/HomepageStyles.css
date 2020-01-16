@@ -174,12 +174,13 @@
 
 .welcome {
   margin-top: 20px;
-  font-size: 40px;
-  font-weight: 600;
+  font-size: 60px;
+  font-weight: 500;
 }
 
 .today {
-  font-size: 20px;
+  font-size: 22px;
+  margin-top: 5px;
 }
 
 .inset-shadow {
