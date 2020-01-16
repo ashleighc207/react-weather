@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../styles/HomepageStyles.css";
 import axios from "axios";
+import { useLocation } from "react-router";
 
-const Homepage = () => {
-  const [zip, setZip] = useState(localStorage.getItem("zip") || 0);
-  const [name, setName] = useState(localStorage.getItem("name") || "Guest");
-  const [data, setData] = useState(localStorage.getItem("weatherData") || {});
-
+const Homepage = ({ props }) => {
+  const { name, zip } = useLocation();
+  console.log(name, zip);
   const getWeather = async zip => {
     try {
       if (!localStorage.getItem("weatherData")) {
