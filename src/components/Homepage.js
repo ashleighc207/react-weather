@@ -77,45 +77,68 @@ const Homepage = ({ props }) => {
     };
   }, [data]);
 
-  useEffect(() => {
-    console.log(dateArr);
-  }, [dateArr]);
-
   return (
     <div className="main night">
-      <div>Welcome, {firstName}</div>
-      <p>The weather today is x in {zipCode}</p>
-      {dateArr &&
-        dateArr.map(d => {
-          return (
-            <div className="border">
-              {d.map(date => {
-                return (
-                  <div key={date.dt}>
-                    <span>
-                      {`${new Date(date.dt * 1000).toLocaleDateString("en-US", {
-                        weekday: "short",
-                        month: "short",
-                        day: "numeric"
-                      })}`}{" "}
-                    </span>
-                    <span>
-                      {`${
-                        new Date(date.dt * 1000).getHours() < 12
-                          ? new Date(date.dt * 1000).getHours()
-                          : new Date(date.dt * 1000).getHours() - 12
-                      }:${
-                        new Date(date.dt * 1000).getMinutes() < 10 ? "0" : ""
-                      }${new Date(date.dt * 1000).getMinutes()} ${
-                        new Date(date.dt * 1000).getHours() < 12 ? " AM" : " PM"
-                      }`}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          );
-        })}
+      <div>
+        <div>Welcome, {firstName}</div>
+        <p>The weather today is x in {zipCode}</p>
+      </div>
+      <div className="date-card-container">
+        {dateArr &&
+          dateArr.map(d => {
+            return (
+              <div key={d[0].dt} className="date-card">
+                <span className="main-date-title">
+                  {new Date(d[0].dt * 1000).toLocaleDateString("en-US", {
+                    weekday: "short",
+                    month: "short",
+                    day: "numeric"
+                  })}
+                </span>
+                {d.map(date => {
+                  return (
+                    <div key={date.dt} className="weather-block">
+                      <div>
+                        <span className="date-time">
+                          {` @ ${
+                            new Date(date.dt * 1000).getHours() < 12
+                              ? new Date(date.dt * 1000).getHours()
+                              : new Date(date.dt * 1000).getHours() - 12
+                          }:${
+                            new Date(date.dt * 1000).getMinutes() < 10
+                              ? "0"
+                              : ""
+                          }${new Date(date.dt * 1000).getMinutes()} ${
+                            new Date(date.dt * 1000).getHours() < 12
+                              ? " AM"
+                              : " PM"
+                          }`}
+                        </span>
+                      </div>
+                      <div>
+                        <span className="weather-title ">Temperature:</span>
+                        <span className="temp">{`${date.main.temp.toFixed(
+                          0
+                        )} `}</span>
+                      </div>
+
+                      <div>
+                        <span className="weather-title">Weather:</span>
+                        <div className="weather-description">
+                          <img
+                            className="weather-icon"
+                            src={`http://openweathermap.org/img/w/${date.weather[0].icon}.png`}
+                          />
+                          {`${date.weather[0].main} -  ${date.weather[0].description}`}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 };

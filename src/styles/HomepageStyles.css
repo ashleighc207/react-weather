@@ -1,6 +1,10 @@
 .main {
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
 }
 
 .dawn {
@@ -66,4 +70,82 @@
     #283e51 78%,
     #416081 100%
   );
+}
+
+.date-card {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 20%;
+  flex-direction: column;
+  margin: 15px 30px;
+  min-height: 200px;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 29px;
+  box-shadow: 10px 6px 15px 6px rgba(33, 33, 33, 0.5);
+}
+
+.date-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  color: #333333;
+}
+
+.weather-block {
+  margin: 20px 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(33, 33, 33, 0.2);
+}
+
+.weather-block:last-child {
+  border-bottom: none;
+}
+
+.date-time {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  color: #9481f7;
+}
+
+.detail-text {
+  font-size: 14px;
+  line-height: 120%;
+}
+.weather-icon {
+  height: 50px;
+  width: 50px;
+}
+.weather-title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  display: flex;
+  margin-top: 5px;
+}
+.weather-description {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 20px;
+}
+
+.main-date-title {
+  font-size: 25px;
+  display: flex;
+  font-weight: 700;
+  justify-content: center;
+  align-items: center;
+  color: #9481f7;
+}
+
+.temp {
+  display: flex;
+  font-size: 25px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.temp:after {
+  content: "\00b0";
 }
