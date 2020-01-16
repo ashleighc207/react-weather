@@ -114,46 +114,51 @@ const Homepage = ({ props }) => {
                     day: "numeric"
                   })}
                 </span>
-                {d.map(date => {
-                  return (
-                    <div key={date.dt} className="weather-block">
-                      <div>
-                        <span className="date-time">
-                          {` @ ${
-                            new Date(date.dt * 1000).getHours() < 12
-                              ? new Date(date.dt * 1000).getHours()
-                              : new Date(date.dt * 1000).getHours() - 12
-                          }:${
-                            new Date(date.dt * 1000).getMinutes() < 10
-                              ? "0"
-                              : ""
-                          }${new Date(date.dt * 1000).getMinutes()} ${
-                            new Date(date.dt * 1000).getHours() < 12
-                              ? " AM"
-                              : " PM"
-                          }`}
-                        </span>
-                      </div>
-                      <div>
-                        <span className="weather-title ">Temperature:</span>
-                        <span className="temp">{`${date.main.temp.toFixed(
-                          0
-                        )} `}</span>
-                      </div>
+                <div className="weather-row">
+                  {d.map(date => {
+                    return (
+                      <div key={date.dt} className="weather-block">
+                        <div>
+                          <span className="date-time">
+                            {` @ ${
+                              new Date(date.dt * 1000).getHours() < 12
+                                ? new Date(date.dt * 1000).getHours()
+                                : new Date(date.dt * 1000).getHours() - 12
+                            }:${
+                              new Date(date.dt * 1000).getMinutes() < 10
+                                ? "0"
+                                : ""
+                            }${new Date(date.dt * 1000).getMinutes()} ${
+                              new Date(date.dt * 1000).getHours() < 12
+                                ? " AM"
+                                : " PM"
+                            }`}
+                          </span>
+                        </div>
+                        <div>
+                          <span className="weather-title ">Temperature:</span>
+                          <span className="temp">{`${date.main.temp.toFixed(
+                            0
+                          )} `}</span>
+                        </div>
 
-                      <div>
-                        <span className="weather-title">Weather:</span>
-                        <div className="weather-description">
-                          <img
-                            className="weather-icon"
-                            src={`http://openweathermap.org/img/w/${date.weather[0].icon}.png`}
-                          />
-                          {`${date.weather[0].main} -  ${date.weather[0].description}`}
+                        <div>
+                          <span className="weather-title">Weather:</span>
+                          <div className="weather-description">
+                            <img
+                              className="weather-icon"
+                              src={`http://openweathermap.org/img/w/${date.weather[0].icon}.png`}
+                            />
+                            <span>
+                              {" "}
+                              {`${date.weather[0].main} -  ${date.weather[0].description}`}
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
             );
           })}
