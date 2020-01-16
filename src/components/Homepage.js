@@ -12,6 +12,8 @@ const Homepage = ({ props }) => {
   const [zipCode, setZipCode] = useState(localStorage.getItem("zip") || "");
   const [data, setData] = useState({});
   const [dateArr, setDateArr] = useState([]);
+  const [city, setCity] = useState("");
+  const [timeOfDay, setTimeOfDay] = useState("dawn");
 
   const getWeather = async zip => {
     try {
@@ -19,6 +21,7 @@ const Homepage = ({ props }) => {
         `https://api.openweathermap.org/data/2.5/forecast?zip=${zipCode}&units=imperial&appid=${process.env.REACT_APP_WEATHER_API_KEY}`
       );
       await setData(response);
+      await setCity(response.data.city.name);
       return response;
     } catch (err) {
       console.log(err);
@@ -29,6 +32,19 @@ const Homepage = ({ props }) => {
     let isCancelled = false;
 
     if (!isCancelled) {
+      let today = new Date();
+
+      today.getHours() < 5
+        ? setTimeOfDay("night")
+        : today.getHours() < 8
+        ? setTimeOfDay("dawn")
+        : today.getHours() < 12
+        ? setTimeOfDay("morning")
+        : today.getHours() < 17
+        ? setTimeOfDay("daytime")
+        : today.getHours() < 20
+        ? setTimeOfDay("sunset")
+        : setTimeOfDay("night");
       getWeather(21234);
       if (zip) {
         setZipCode(zip);
@@ -78,10 +94,13 @@ const Homepage = ({ props }) => {
   }, [data]);
 
   return (
-    <div className="main night">
-      <div>
-        <div>Welcome, {firstName}</div>
-        <p>The weather today is x in {zipCode}</p>
+    <div className={`main ${timeOfDay}`}>
+      <div className="welcome-container">
+        <div className="welcome">Welcome, {firstName}</div>
+        {console.log(city)}
+        <p className="today">
+          Here's your 5-day forecast{city && ` for ${city}`}
+        </p>
       </div>
       <div className="date-card-container">
         {dateArr &&
